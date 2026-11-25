@@ -1,1 +1,731 @@
-my site is coming soon
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Two Roads to Freedom | Digital Museum Exhibit</title>
+  <style>
+    /* =========================================
+       MUSEUM EXHIBIT DESIGN SYSTEM (NO EXTERNAL FONTS)
+       ========================================= */
+    :root {
+      --bg-parchment: #f7f5f0;
+      --bg-card: #ffffff;
+      --bg-accent: #efece4;
+      --ink-primary: #1a1917;
+      --ink-secondary: #4a4741;
+      --ink-muted: #736f67;
+      --accent-navy: #1d3147;
+      --accent-crimson: #7a2621;
+      --accent-gold: #9a7b3e;
+      --border-hairline: #d6d1c7;
+      --font-serif: "Georgia", "Times New Roman", Times, serif;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-parchment);
+      color: var(--ink-primary);
+      font-family: var(--font-serif);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* =========================================
+       EXHIBIT HEADER & NAVIGATION
+       ========================================= */
+    .exhibit-banner {
+      background-color: var(--ink-primary);
+      color: #e5e0d5;
+      text-align: center;
+      padding: 0.5rem 1rem;
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    header {
+      background-color: var(--bg-card);
+      border-bottom: 1px solid var(--border-hairline);
+      padding: 2.25rem 1.5rem 0;
+      text-align: center;
+    }
+
+    .exhibit-kicker {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .site-title {
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      font-weight: normal;
+      letter-spacing: -0.01em;
+      color: var(--ink-primary);
+      margin-bottom: 0.4rem;
+    }
+
+    .site-subtitle {
+      font-style: italic;
+      color: var(--ink-secondary);
+      font-size: 1.05rem;
+      margin-bottom: 1.75rem;
+    }
+
+    nav {
+      border-top: 1px solid var(--border-hairline);
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .nav-list {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.25rem;
+    }
+
+    .nav-link {
+      display: inline-block;
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      padding: 1rem 1.15rem;
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-secondary);
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .nav-link:hover {
+      color: var(--ink-primary);
+    }
+
+    .nav-link.active {
+      color: var(--accent-crimson);
+      border-bottom-color: var(--accent-crimson);
+    }
+
+    /* =========================================
+       MAIN GALLERY CONTAINER & PAGE SECTIONS
+       ========================================= */
+    main {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+    }
+
+    .exhibit-page {
+      display: none;
+      animation: fadeIn 0.35s ease;
+    }
+
+    .exhibit-page.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .gallery-header {
+      border-bottom: 2px solid var(--ink-primary);
+      padding-bottom: 1.25rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .gallery-number {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent-navy);
+      display: block;
+      margin-bottom: 0.35rem;
+    }
+
+    .gallery-title {
+      font-size: 2.1rem;
+      font-weight: normal;
+      color: var(--ink-primary);
+    }
+
+    .gallery-lead {
+      font-size: 1.15rem;
+      color: var(--ink-secondary);
+      margin-top: 0.65rem;
+      max-width: 780px;
+    }
+
+    /* =========================================
+       HOME PAGE HERO & EXHIBITION ROOMS
+       ========================================= */
+    .hero-placard {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      border-top: 4px solid var(--accent-navy);
+      padding: 3rem 2.5rem;
+      margin-bottom: 3rem;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+    }
+
+    .hero-statement {
+      font-size: clamp(1.35rem, 2.5vw, 1.85rem);
+      line-height: 1.55;
+      color: var(--ink-primary);
+      max-width: 820px;
+      margin: 0 auto 1.75rem;
+      text-align: center;
+    }
+
+    .hero-divider {
+      width: 64px;
+      height: 2px;
+      background-color: var(--accent-gold);
+      margin: 0 auto 1.75rem;
+    }
+
+    .hero-context {
+      max-width: 720px;
+      margin: 0 auto;
+      color: var(--ink-secondary);
+      font-size: 1.05rem;
+      text-align: center;
+    }
+
+    .wing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .wing-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .wing-card:hover {
+      border-color: var(--ink-primary);
+      transform: translateY(-2px);
+    }
+
+    .wing-tag {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .wing-card h3 {
+      font-size: 1.35rem;
+      font-weight: normal;
+      margin-bottom: 0.65rem;
+      color: var(--ink-primary);
+    }
+
+    .wing-card p {
+      font-size: 0.96rem;
+      color: var(--ink-secondary);
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-exhibit {
+      align-self: flex-start;
+      background: none;
+      border: 1px solid var(--ink-primary);
+      color: var(--ink-primary);
+      padding: 0.55rem 1rem;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .btn-exhibit:hover {
+      background-color: var(--ink-primary);
+      color: var(--bg-card);
+    }
+
+    /* =========================================
+       SIDE-BY-SIDE DISPLAY PANELS (COMPARISON)
+       ========================================= */
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .artifact-panel {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      padding: 2rem;
+    }
+
+    .artifact-panel.exodus {
+      border-top: 4px solid var(--accent-gold);
+    }
+
+    .artifact-panel.revolution {
+      border-top: 4px solid var(--accent-navy);
+    }
+
+    .panel-label {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .exodus .panel-label {
+      color: var(--accent-gold);
+    }
+
+    .revolution .panel-label {
+      color: var(--accent-navy);
+    }
+
+    .artifact-panel h3 {
+      font-size: 1.5rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .artifact-panel p {
+      color: var(--ink-secondary);
+      margin-bottom: 1rem;
+      font-size: 1.02rem;
+    }
+
+    .curator-note {
+      background-color: var(--bg-accent);
+      border-left: 3px solid var(--accent-crimson);
+      padding: 1.5rem 1.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .curator-note h4 {
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent-crimson);
+      margin-bottom: 0.5rem;
+    }
+
+    .curator-note p {
+      color: var(--ink-primary);
+      font-size: 1.02rem;
+    }
+
+    /* =========================================
+       WHERE COMPARISON BREAKS & SOURCES LISTS
+       ========================================= */
+    .divergence-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .divergence-item {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      border-left: 4px solid var(--accent-crimson);
+      padding: 1.75rem 2rem;
+    }
+
+    .divergence-item h3 {
+      font-size: 1.3rem;
+      font-weight: normal;
+      margin-bottom: 0.65rem;
+      color: var(--ink-primary);
+    }
+
+    .divergence-item p {
+      color: var(--ink-secondary);
+      font-size: 1.02rem;
+    }
+
+    .source-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      padding: 1.75rem 2rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .source-type {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .source-citation {
+      font-size: 1.1rem;
+      color: var(--ink-primary);
+      margin-bottom: 0.65rem;
+    }
+
+    .source-annotation {
+      font-size: 0.96rem;
+      color: var(--ink-secondary);
+    }
+
+    /* =========================================
+       FOOTER
+       ========================================= */
+    footer {
+      border-top: 1px solid var(--border-hairline);
+      background-color: var(--bg-card);
+      text-align: center;
+      padding: 2rem 1.5rem;
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      color: var(--ink-muted);
+    }
+
+    @media (max-width: 768px) {
+      .comparison-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-placard {
+        padding: 2rem 1.5rem;
+      }
+
+      .nav-link {
+        padding: 0.75rem 0.75rem;
+        font-size: 0.74rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="exhibit-banner">
+    Historical &amp; Literary Comparative Exhibition &bull; Special Collections
+  </div>
+
+  <header>
+    <div class="exhibit-kicker">Comparative History Exhibition</div>
+    <h1 class="site-title">Two Roads to Freedom</h1>
+    <p class="site-subtitle">The Exodus from Egypt &amp; David McCullough’s <em>1776</em></p>
+
+    <nav aria-label="Exhibition Galleries">
+      <ul class="nav-list">
+        <li><a href="#home" class="nav-link active" data-page="home">Home</a></li>
+        <li><a href="#leaders" class="nav-link" data-page="leaders">The Leaders</a></li>
+        <li><a href="#crossing" class="nav-link" data-page="crossing">The Crossing</a></li>
+        <li><a href="#journey" class="nav-link" data-page="journey">The Long Journey</a></li>
+        <li><a href="#breaks" class="nav-link" data-page="breaks">Where Comparison Breaks</a></li>
+        <li><a href="#sources" class="nav-link" data-page="sources">Sources</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- =========================================
+         PAGE 1: HOME
+         ========================================= -->
+    <section id="page-home" class="exhibit-page active">
+      <div class="hero-placard">
+        <p class="hero-statement">
+          “Two peoples walked out of bondage. One crossed a sea. The other crossed a river in a storm.”
+        </p>
+        <div class="hero-divider"></div>
+        <p class="hero-context">
+          Across millennia, the story of liberation has taken remarkably parallel forms. This exhibition places the ancient biblical narrative of the Exodus alongside David McCullough’s historical account of the American Revolution in <em>1776</em>—examining how reluctant leaders, perilous waters, and grueling wilderness campaigns shaped two defining struggles for self-determination.
+        </p>
+      </div>
+
+      <div class="wing-grid">
+        <article class="wing-card">
+          <div>
+            <div class="wing-tag">Gallery I</div>
+            <h3>The Leaders</h3>
+            <p>Moses and George Washington: two reluctant commanders burdened by doubt, fractious followers, and immense responsibility.</p>
+          </div>
+          <button class="btn-exhibit" data-target="leaders">Enter Gallery &rarr;</button>
+        </article>
+
+        <article class="wing-card">
+          <div>
+            <div class="wing-tag">Gallery II</div>
+            <h3>The Crossing</h3>
+            <p>From the parted waters of the Red Sea to the ice-choked Delaware River on Christmas night, survival depended on crossing impassable water.</p>
+          </div>
+          <button class="btn-exhibit" data-target="crossing">Enter Gallery &rarr;</button>
+        </article>
+
+        <article class="wing-card">
+          <div>
+            <div class="wing-tag">Gallery III</div>
+            <h3>The Long Journey</h3>
+            <p>Freedom was not won in a single night. Both peoples endured hunger, doubt, winter cold, and desert wandering before reaching their goal.</p>
+          </div>
+          <button class="btn-exhibit" data-target="journey">Enter Gallery &rarr;</button>
+        </article>
+
+        <article class="wing-card">
+          <div>
+            <div class="wing-tag">Gallery IV</div>
+            <h3>Where Comparison Breaks</h3>
+            <p>A critical examination of the profound historical, theological, and political differences separating ancient Israel from 18th-century America.</p>
+          </div>
+          <button class="btn-exhibit" data-target="breaks">Enter Gallery &rarr;</button>
+        </article>
+
+        <article class="wing-card">
+          <div>
+            <div class="wing-tag">Gallery V</div>
+            <h3>Sources</h3>
+            <p>Primary texts, historical scholarship, and archival references curated for this comparative exhibition.</p>
+          </div>
+          <button class="btn-exhibit" data-target="sources">View Archive &rarr;</button>
+        </article>
+      </div>
+    </section>
+
+    <!-- =========================================
+         PAGE 2: THE LEADERS
+         ========================================= -->
+    <section id="page-leaders" class="exhibit-page">
+      <div class="gallery-header">
+        <span class="gallery-number">Gallery I</span>
+        <h2 class="gallery-title">The Leaders: Reluctant Commanders</h2>
+        <p class="gallery-lead">Neither Moses nor George Washington sought absolute power; both accepted command out of duty while privately wrestling with inadequacy.</p>
+      </div>
+
+      <div class="comparison-grid">
+        <div class="artifact-panel exodus">
+          <span class="panel-label">The Exodus Narrative</span>
+          <h3>Moses of Midian</h3>
+          <p>When called at the burning bush to confront Pharaoh, Moses protests five times, citing his lack of status and his slowness of speech. Raised in an Egyptian palace yet exiled as a shepherd, he stands between two worlds.</p>
+          <p>Throughout the Exodus, Moses acts less as a conquering general and more as an intermediary—absorbing the complaints of a terrified population while pleading with both Pharaoh and God for deliverance.</p>
+        </div>
+
+        <div class="artifact-panel revolution">
+          <span class="panel-label">McCullough’s 1776</span>
+          <h3>General George Washington</h3>
+          <p>As David McCullough portrays him, the Washington of 1776 is not yet a marble monument. He is a Virginia planter thrust into commanding an untrained, under-supplied Continental Army against the world’s premier military empire.</p>
+          <p>In private letters to Joseph Reed and Martha Washington, he confesses deep self-doubt, admitting he wished he had never accepted command, yet projecting unwavering stoicism before his troops.</p>
+        </div>
+      </div>
+
+      <div class="curator-note">
+        <h4>Curator’s Synthesis</h4>
+        <p>Both figures became foundational symbols of national identity precisely because their authority rested on moral endurance rather than royal birth. Notably, Founding Fathers like Benjamin Franklin and Thomas Jefferson explicitly proposed depicting Moses crossing the Red Sea on the Great Seal of the United States—linking Washington’s mission directly to the Exodus archetype.</p>
+      </div>
+    </section>
+
+    <!-- =========================================
+         PAGE 3: THE CROSSING
+         ========================================= -->
+    <section id="page-crossing" class="exhibit-page">
+      <div class="gallery-header">
+        <span class="gallery-number">Gallery II</span>
+        <h2 class="gallery-title">The Crossing: Deliverance Through Dark Waters</h2>
+        <p class="gallery-lead">In both accounts, a seemingly fatal body of water separates a cornered people from survival—and becomes the turning point of their liberation.</p>
+      </div>
+
+      <div class="comparison-grid">
+        <div class="artifact-panel exodus">
+          <span class="panel-label">The Exodus Narrative</span>
+          <h3>The Red Sea (Yam Suph)</h3>
+          <p>Trapped between Pharaoh’s advancing chariots and the sea, the Israelites face certain recapture or destruction. Under the cover of night and a pillar of cloud, a strong east wind drives back the waters, creating dry ground between walls of sea.</p>
+          <p>By morning, the Israelites reach the opposite shore, while the returning waters engulf the pursuing Egyptian army—severing the physical tie to slavery forever.</p>
+        </div>
+
+        <div class="artifact-panel revolution">
+          <span class="panel-label">McCullough’s 1776</span>
+          <h3>The Delaware River, December 25, 1776</h3>
+          <p>Driven out of New York and across New Jersey, Washington’s army is on the brink of dissolution as enlistments expire at year’s end. On Christmas night, Washington stakes the entire Revolution on a desperate nocturnal crossing of the ice-choked Delaware River.</p>
+          <p>Battling sleet, hail, and a howling nor’easter, John Glover’s Marblehead mariners ferry 2,400 men, horses, and artillery across the freezing current to launch the surprise victory at Trenton.</p>
+        </div>
+      </div>
+
+      <div class="curator-note">
+        <h4>Curator’s Synthesis</h4>
+        <p>In both stories, water represents an insurmountable barrier turned into an instrument of salvation under cover of darkness. Where the Red Sea marks a miraculous divine intervention, McCullough emphasizes human grit, seamanship, and weather—the storm that nearly froze the Americans also blinded the Hessian garrison at Trenton to their approach.</p>
+      </div>
+    </section>
+
+    <!-- =========================================
+         PAGE 4: THE LONG JOURNEY
+         ========================================= -->
+    <section id="page-journey" class="exhibit-page">
+      <div class="gallery-header">
+        <span class="gallery-number">Gallery III</span>
+        <h2 class="gallery-title">The Long Journey: Survival in the Wilderness</h2>
+        <p class="gallery-lead">Escaping oppression was only the beginning; sustaining morale through deprivation proved the harder test.</p>
+      </div>
+
+      <div class="comparison-grid">
+        <div class="artifact-panel exodus">
+          <span class="panel-label">The Exodus Narrative</span>
+          <h3>Forty Years in Sinai</h3>
+          <p>Once the initial euphoria of the Red Sea fades, the harsh reality of the Sinai desert sets in. Lacking water, bread, and security, the Israelites repeatedly murmur against Moses, longing for the predictable captivity of Egypt over the uncertainties of freedom.</p>
+          <p>The wilderness becomes a crucible where a generation of enslaved subjects is forged into a self-governing nation bound by shared law.</p>
+        </div>
+
+        <div class="artifact-panel revolution">
+          <span class="panel-label">McCullough’s 1776</span>
+          <h3>Retreat Across New Jersey</h3>
+          <p>McCullough devotes much of <em>1776</em> not to triumphant battles, but to agonizing retreats—from Brooklyn Heights, Manhattan, and Fort Washington. Soldiers marched without shoes, leaving bloody footprints in the frost, plagued by dysentery, typhus, and desertion.</p>
+          <p>Thousands abandoned the cause to sign loyalty oaths to King George III, leaving only a ragged core willing to endure the winter campaign.</p>
+        </div>
+      </div>
+
+      <div class="curator-note">
+        <h4>Curator’s Synthesis</h4>
+        <p>Both narratives strip away romantic notions of instant liberation. Freedom requires an arduous transition period in which nostalgia for old security threatens to undo the revolution before it can take root.</p>
+      </div>
+    </section>
+
+    <!-- =========================================
+         PAGE 5: WHERE COMPARISON BREAKS
+         ========================================= -->
+    <section id="page-breaks" class="exhibit-page">
+      <div class="gallery-header">
+        <span class="gallery-number">Gallery IV</span>
+        <h2 class="gallery-title">Where Comparison Breaks</h2>
+        <p class="gallery-lead">Historical rigor requires recognizing where an analogy ends. Despite powerful parallels, the Exodus and the American Revolution differ fundamentally in nature, agency, and social reality.</p>
+      </div>
+
+      <div class="divergence-list">
+        <div class="divergence-item">
+          <h3>1. Chattel Slavery vs. Political Subjection</h3>
+          <p>The Hebrews in Egypt were an enslaved ethnic minority subjected to forced labor and state-sponsored infanticide. By contrast, the American revolutionaries of 1776 were free British subjects protesting taxation without representation and parliamentary overreach—while many of their own leaders, including George Washington, enslaved hundreds of people themselves.</p>
+        </div>
+
+        <div class="divergence-item">
+          <h3>2. Divine Miracle vs. Human Contingency</h3>
+          <p>In the Book of Exodus, liberation is explicitly driven by direct supernatural intervention—plagues, pillars of fire, parted seas, and manna from heaven. McCullough’s <em>1776</em> is a secular work of modern historiography rooted in human contingency, luck, weather, logistics, and fallible tactical decisions.</p>
+        </div>
+
+        <div class="divergence-item">
+          <h3>3. Migration to a New Land vs. Defending Home Soil</h3>
+          <p>The Israelites physically evacuated Egypt to migrate toward a promised homeland in Canaan. The American colonists did not leave their territory; they fought a war of independence to expel imperial authority from the land they already inhabited.</p>
+        </div>
+
+        <div class="divergence-item">
+          <h3>4. Theocratic Covenant vs. Enlightenment Republic</h3>
+          <p>At Mount Sinai, the liberated Israelites entered into a sacred religious covenant governed by divine law. The American Revolution culminated in a constitutional republic shaped by Enlightenment political philosophy, separation of powers, and popular sovereignty.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+         PAGE 6: SOURCES
+         ========================================= -->
+    <section id="page-sources" class="exhibit-page">
+      <div class="gallery-header">
+        <span class="gallery-number">Gallery V</span>
+        <h2 class="gallery-title">Sources &amp; Archival References</h2>
+        <p class="gallery-lead">Primary and secondary works consulted for this comparative exhibition.</p>
+      </div>
+
+      <div class="source-card">
+        <div class="source-type">Primary Historical Monograph</div>
+        <div class="source-citation">McCullough, David. <em>1776</em>. New York: Simon &amp; Schuster, 2005.</div>
+        <p class="source-annotation">Chronicles the pivotal military campaigns of the American Revolution from the Siege of Boston through the retreat from New York and the Delaware River crossing at Trenton.</p>
+      </div>
+
+      <div class="source-card">
+        <div class="source-type">Sacred &amp; Literary Primary Text</div>
+        <div class="source-citation"><em>The Book of Exodus</em> (Chapters 1–20). Hebrew Bible / Old Testament.</div>
+        <p class="source-annotation">Foundational account of Israelite bondage in Egypt, the leadership of Moses, the crossing of the Red Sea, and the wilderness journey to Mount Sinai.</p>
+      </div>
+
+      <div class="source-card">
+        <div class="source-type">Archival Historical Context</div>
+        <div class="source-citation">Library of Congress. <em>Religion and the Founding of the American Republic: "Rebellion to Tyrants is Obedience to God."</em></div>
+        <p class="source-annotation">Documents the 1776 committee proposals by Benjamin Franklin and Thomas Jefferson to use the crossing of the Red Sea as the official emblem of the United States.</p>
+      </div>
+
+      <div class="source-card">
+        <div class="source-type">Primary Correspondence</div>
+        <div class="source-citation">Washington, George. <em>Letters to Joseph Reed and John Hancock (1776)</em>. The Papers of George Washington, University of Virginia.</div>
+        <p class="source-annotation">First-hand dispatches detailing the logistical shortages, troop morale, and winter conditions cited throughout McCullough’s narrative.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    Two Roads to Freedom &bull; Comparative History School Project &bull; Built in Pure HTML &amp; CSS
+  </footer>
+
+  <script>
+    const navLinks = document.querySelectorAll('.nav-link');
+    const pages = document.querySelectorAll('.exhibit-page');
+    const wingButtons = document.querySelectorAll('.btn-exhibit');
+
+    function showPage(pageId) {
+      pages.forEach(page => {
+        page.classList.toggle('active', page.id === 'page-' + pageId);
+      });
+
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.dataset.page === pageId);
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        showPage(link.dataset.page);
+      });
+    });
+
+    wingButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        showPage(btn.dataset.target);
+      });
+    });
+  </script>
+
+</body>
+</html>
